@@ -133,7 +133,7 @@ table.basics, th, tr, td {
 	<!-- table of contents-->
 		<div style="padding:10px; border:1px solid #cccccc; border-radius:10px; width: 800px; height:auto; margin:auto;">
 <img src="images/admin_header.jpg" style="width:795px;">
-  <a name="top"><b>GIT -> Table of Contents:</b></a>
+  <a name="top"><b>GIT -> Table of Contents...</b></a>
 
 <div style="display:inline-block; border:1px solid #cccccc; border-radius:10pt; padding:10px; margin:auto; box-shadow:5px 5px 5px #cccccc; font-size:10pt;">Any word that is highlighted in yellow represents a "tooltip." You can hover over it and see some additional information about that particular term. Any edits to that functionality can be investigagted by heading out to <a href="http://iamceege.github.io/tooltipster/#htmlcontentalt" target="_blank">tooltipster.com</a>. Some good online resources include<ul><li><a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank">A Visual GIT Resource</a></li></ul></div>
 
