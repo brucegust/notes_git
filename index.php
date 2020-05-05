@@ -358,6 +358,8 @@ Buckle up!
 
 <span class="tab_twice"><a href="#prac_init" class="contents">1) git int</a></span>
 <span class="tab_thrice"><a href="#prac_lf" class="contents">a) LF will be replaced by CRLF</a></span>
+<span class="tab_twice"><a href="#prac_init" class="contents">2) git add origin</a></span>
+<span class="tab_twice"><a href="#prac_push" class="contents">3) git push origin master</a></span>
 
 
 
@@ -3017,6 +3019,32 @@ If you are a single developer working on a windows machine, and you don't care t
 <span class="blue">git config core.autocrlf true</span></div>
 
 If you want to get into some detail, you can read the <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace" target="_blank">documentation</a>, but the bottom line is that if you're only dealing with Windows, you can turn this warning off.
+
+<span class="tab_twice"><a name="prac_init" class="contents">2) git add origin</a></span>
+
+This establishes the URL of the remote repository. You'll then verify that URL with the command you see below...
+
+<div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master)
+$ git remote add origin https://github.com/brucegust/notes_git.git <span class="light_green">// this adds the remote repository to your Git configuration</span>
+
+$ git remote -v <span class="light_green">// this verifies the URL</span>
+origin  https://github.com/brucegust/notes_git.git (fetch)
+origin  https://github.com/brucegust/notes_git.git (push)
+</div>
+
+<span class="tab_twice"><a href="#prac_init" class="contents">3) git push origin master</a></span>
+
+<div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master)
+$ git push origin master <span class="light_green">// pushes everything up to your "master" branch</span>
+Enumerating objects: 97, done.
+Counting objects: 100% (97/97), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (89/89), done.
+Writing objects: 100% (97/97), 11.88 MiB | 11.88 MiB/s, done.
+Total 97 (delta 11), reused 0 (delta 0)
+remote: Resolving deltas: 100% (11/11), done.
+To https://github.com/brucegust/notes_git.git
+ * [new branch]      master -> master</div>
 
 
 
