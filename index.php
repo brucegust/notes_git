@@ -133,7 +133,7 @@ table.basics, th, tr, td {
 	<!-- table of contents-->
 		<div style="padding:10px; border:1px solid #cccccc; border-radius:10px; width: 800px; height:auto; margin:auto;">
 <img src="images/admin_header.jpg" style="width:795px;">
-  <a name="top"><b>GIT -> Table of Contents:</b></a>
+  <a name="top"><b>GIT -> Table of Contents!</b></a>
 
 <div style="display:inline-block; border:1px solid #cccccc; border-radius:10pt; padding:10px; margin:auto; box-shadow:5px 5px 5px #cccccc; font-size:10pt;">Any word that is highlighted in yellow represents a "tooltip." You can hover over it and see some additional information about that particular term. Any edits to that functionality can be investigagted by heading out to <a href="http://iamceege.github.io/tooltipster/#htmlcontentalt" target="_blank">tooltipster.com</a>. Some good online resources include<ul><li><a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank">A Visual GIT Resource</a></li></ul></div>
 
@@ -359,7 +359,11 @@ Buckle up!
 <span class="tab_twice"><a href="#prac_init" class="contents">1) git int</a></span>
 <span class="tab_thrice"><a href="#prac_lf" class="contents">a) LF will be replaced by CRLF</a></span>
 <span class="tab_twice"><a href="#prac_init" class="contents">2) git add origin</a></span>
-<span class="tab_twice"><a href="#prac_push" class="contents">3) git push origin master</a></span>
+<span class="tab_twice"><a href="#prac_push_origin" class="contents">3) git push origin master</a></span>
+<span class="tab_thrice"><a href="#prac_set_origin" class="contents">a) git push set origin master</a></span>
+ <span class="tab_twice"><a href="#prac_problem" class="contents">4) Problem #1 -> Changes Made Directly to Github</a></span>
+   <span class="tab_twice"><a href="#prac_track" class="contents">a) push | --set-upstream-to=origin/master</a></span>
+  <span class="tab_twice"><a href="#prac_track_b" class="contents">b) pull | --set-upstream-to=origin/master</a></span>
 
 
 
@@ -3020,7 +3024,7 @@ If you are a single developer working on a windows machine, and you don't care t
 
 If you want to get into some detail, you can read the <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace" target="_blank">documentation</a>, but the bottom line is that if you're only dealing with Windows, you can turn this warning off.
 
-<span class="tab_twice"><a name="prac_init" class="contents">2) git add origin</a></span>
+<span class="tab_twice"><a name="prac_init" class="contents">2) git add origin</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
 
 This establishes the URL of the remote repository. You'll then verify that URL with the command you see below...
 
@@ -3032,7 +3036,7 @@ origin  https://github.com/brucegust/notes_git.git (fetch)
 origin  https://github.com/brucegust/notes_git.git (push)
 </div>
 
-<span class="tab_twice"><a href="#prac_init" class="contents">3) git push origin master</a></span>
+<span class="tab_twice"><a name="prac_push_origin" class="contents">3) git push origin master</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
 
 <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master)
 $ git push origin master <span class="light_green">// pushes everything up to your "master" branch</span>
@@ -3045,6 +3049,43 @@ Total 97 (delta 11), reused 0 (delta 0)
 remote: Resolving deltas: 100% (11/11), done.
 To https://github.com/brucegust/notes_git.git
  * [new branch]      master -> master</div>
+ 
+  <span class="tab_thrice"><a name="prac_set_origin" class="contents">a) git push set origin master</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+ 
+ The first time you got to "push" your changes up to your "origin master," you'll get a prompt that says you haven't set your "push" to the correct repository. You fix that with this:
+ 
+<span class="blue">$ git push --set-upstream origin master</span>
+ 
+ <span class="tab_twice"><a name="prac_problem" class="contents">4) Problem #1 -> Changes Made Directly to Github</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+ 
+ <span class="tab_twice"><a name="prac_track" class="contents">a) push | --set-upstream-to=origin/master</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+ 
+ Some changes were made directly to the "master" branch on Github. After you added and committed your most recent work on your local box, you went to push those changes only to get an error because you're trying to alter a file that's been altered by someone else...
+ 
+ <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master)
+$ git push --set-upstream origin master
+To https://github.com/brucegust/notes_git.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/brucegust/notes_git.git'
+<span class="light_green">hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.</span>
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.</div>
+
+So, you have to first "pull" what is the newest and coolest from your remote repository before you attempt to "push," just so you know your starting point is up to date with what's in the remote.
+
+ <span class="tab_twice"><a name="prac_track_b" class="contents">b) push | --set-upstream-to=origin/master</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+ 
+If you've not set your local branch to "pull" from a specific remote branch in your repository (even though you just did the same thing with "pushing" a moment ago), then you have to set that dynamic as well with this:
+ 
+ <span class="blue">git branch --set-upstream-to=origin/master</span>
+ 
+ One thing to keep in mind: Although it seemed redundant to have to issue the same command ("set-upstream..."), if you simply enter <span class="blue">git branch --set-upstream-to=origin/master</span> rather than <span class="blue">git <span class="highlight">push</span> --set-upstream-to=origin/master</span>, you're now tracking with the remote branch and you don't have to qualify it every time you go to either push or pull.
+ 
+ 
+ 
+ 
 
 
 
