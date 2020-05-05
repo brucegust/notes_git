@@ -3083,6 +3083,22 @@ If you've not set your local branch to "pull" from a specific remote branch in y
  
  One thing to keep in mind: Although it seemed redundant to have to issue the same command ("set-upstream..."), if you simply enter <span class="blue">git branch --set-upstream-to=origin/master</span> rather than <span class="blue">git <span class="highlight">push</span> --set-upstream-to=origin/master</span>, you're now tracking with the remote branch and you don't have to qualify it every time you go to either push or pull.
  
+  <span class="tab_twice"><a name="prac_rejected" class="contents">c) Updates Were Rejected</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+  
+  You're trying now to "push" your changes to the remote repository, but you've made a change to the same line on both the remote and the local file so you're going to have a conflict. That's what you see below...
+  
+  <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master)
+$ git push
+To https://github.com/brucegust/notes_git.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/brucegust/notes_git.git'
+<span class="yellow">hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.</span></div>
+
+So, we're going to do a <span class="blue">git pull</span>
+ 
  
  
  
