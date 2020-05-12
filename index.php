@@ -361,10 +361,13 @@ Buckle up!
 <span class="tab_twice"><a href="#prac_init" class="contents">2) git add origin</a></span>
 <span class="tab_twice"><a href="#prac_push_origin" class="contents">3) git push origin master</a></span>
 <span class="tab_thrice"><a href="#prac_set_origin" class="contents">a) git push set origin master</a></span>
- <span class="tab_twice"><a href="#prac_problem" class="contents">4) Problem #1 -> Changes Made Directly to Github</a></span>
-   <span class="tab_twice"><a href="#prac_track" class="contents">a) push | --set-upstream-to=origin/master</a></span>
-  <span class="tab_twice"><a href="#prac_track_b" class="contents">b) pull | --set-upstream-to=origin/master</a></span>
-
+<span class="tab_twice"><a href="#prac_problem" class="contents">4) Problem #1 -> Changes Made Directly to Github</a></span>
+<span class="tab_twice"><a href="#prac_track" class="contents">a) push | --set-upstream-to=origin/master</a></span>
+<span class="tab_twice"><a href="#prac_track_b" class="contents">b) pull | --set-upstream-to=origin/master</a></span>
+<span class="tab_thrice"><a href="#prac_rejected" class="contents">c) Updates Were Rejected</a></span>
+<span class="tab_thrice"><a href="#prac_p4" class="contents">d) p4 Merge Tool</a></span>
+<span class="tab_once"><a href="#prac_duplicate" class="contents">O) Duplicate Branch</a></span>
+<span class="tab_once"><a href="#prac_messes" class="contents">P) Merging and Conflicts</a></span>
 
 
 		</div><!--end of table of contents-->
@@ -3083,9 +3086,13 @@ If you've not set your local branch to "pull" from a specific remote branch in y
  
  One thing to keep in mind: Although it seemed redundant to have to issue the same command ("set-upstream..."), if you simply enter <span class="blue">git branch --set-upstream-to=origin/master</span> rather than <span class="blue">git <span class="highlight">push</span> --set-upstream-to=origin/master</span>, you're now tracking with the remote branch and you don't have to qualify it every time you go to either push or pull.
  
-  <span class="tab_twice"><a name="prac_rejected" class="contents">c) Updates Were Rejected</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+<span class="tab_thrice"><a name="prac_rejected" class="contents">c) Updates Were Rejected</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
   
-  You're trying now to "push" your changes to the remote repository, but you've made a change to the same line on both the remote and the local file so you're going to have a conflict. That's what you see below...
+  So, here's what's happened:
+  
+  On Github, we changed "Table of Contents:" to "Table of Contents..." On our local version, we changed it to "Table of Contents!"
+  
+  You're trying now to "push" your changes to the remote repository, but because you've made a change to the same line on both the remote and the local file so you're going tobe told that "updates were rejected." That's what you see below...
   
   <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master)
 $ git push
@@ -3097,13 +3104,88 @@ hint: its remote counterpart. Integrate the remote changes (e.g.
 hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.</span></div>
 
-So, we're going to do a <span class="blue">git pull</span>
- 
- 
- 
- 
+So, we're going to do a <span class="blue">git pull</span>. That's going to "merge" whatever has happened on the remote branch with what you've done locally. Normally, that's not going to be a problem, provided you haven't made changes on the same line. But, because the same line has been altered, you get this:
 
+<div class="git_box">$ git pull
+Auto-merging index.php
+CONFLICT (content): Merge conflict in index.php
+Automatic merge failed; fix conflicts and then commit the result. <span class="light_green">// here is where you're going to have to manually repair some conflicts</span></div>
 
+So, now you're going to bring your <a name="p4merge">mergetool</a> into the mix...
+
+<span class="tab_thrice"><a name="prac_p4" class="contents">d) p4 Merge Tool</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+ <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master|MERGING)
+$ git mergetool <span class="light_green">// you set this up earlier when you edited your config gitconfig file</span>
+Merging:
+index.php
+
+Normal merge conflict for 'index.php':
+  {local}: modified file
+  {remote}: modified file</div>
+  
+When you type, "mergetool," that prompts the opening of your "P4 Merge Tool" and you get this:
+  
+<div style="width:900px; margin:auto; text-align:center;"><a href="images/merge_bacon.png" target="_blank"><img src="images/merge_bacon.png" border="0" style="width:900px; border:1px solid #ccc;"></a></div>
+
+The "orginal file" was what your originally started with. Your "remote version" and your "local version" are self explanatory. What you're going to do is choose the version you want to keep in the bottom pain by clicking on the appropriate color. After you're done, you'll go up to the "File" menu, choose "Save" and then "Close." At that point, you'll be routed back to your Command Line and you'll see this:
+  
+ <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (master|MERGING)
+$ git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 3 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+All conflicts fixed but you are still merging. <span class="light_green">// you're done fixing the conflicts, but you're not out of the woods yet</span>
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   index.php
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+        index.php.orig</div>
+ 
+ <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (<span class="yellow">master|MERGING)</span>
+$ git commit -am "completing the merge"
+[master 1992e17] completing the merge</div>
+ 
+<div style="height:35px; width:300px; float:right; margin:10px; border:1px solid #ccc; box-shadow:5px 5px 3px #ccc; border-radius:10pt; padding:10px; font-size:10pt;">For more P4 Mergetool info and instructions, click <a href="https://www.perforce.com/manuals/p4merge/p4merge.pdf" target="_blank">here</a> for the documentation.</div>After you've added and commited your changes, you'll see what you've got above. Notice the <span class="blue">master | Merging</span> status. After you've completed the merge, you'll have this:
+  
+  <div class="git_box">Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (<span class="yellow">master</span>)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+Bruce@WINDOWS-2SH5T3I MINGW64 /c/wamp64/www/adm/git (<span class="yellow">master</span>)
+$ git push
+Enumerating objects: 23, done.
+Counting objects: 100% (21/21), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (15/15), 5.77 KiB | 984.00 KiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0)
+remote: Resolving deltas: 100% (8/8), completed with 1 local object.
+To https://github.com/brucegust/notes_git.git
+   5ad030d..1992e17  master -> master</div>
+
+You're no longer in "merging" mode. Now, you're just pushing things up the master branch and your working tree is now clean!
+
+<span class="tab_once"><a name="prac_duplicate" class="contents">O) Duplicate Branch</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+
+When you want to make a copy of a branch that you've been working on, just for the sake of having something to go back to, just make a branch of that branch. Like this:
+
+<div class="git_box">b.gust@AHA-DT-BGUST2 MINGW64 /c/wamp64/www/bsmart (final-activity-stream)
+$ git branch final-acitivty-stream-jic</div>
+
+What you've just done is made a copy of <span class="blue">final-activity-stream</span> and called it <span class="blue">final-activity-stream-jic</span>.
+
+<span class="tab_once"><a name="prac_messes" class="contents">P) Merging and Conflicts</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+
+https://stackoverflow.com/questions/1251681/git-mergetool-generates-unwanted-orig-files
 
 
 		</div><!--closing tag for content-->
