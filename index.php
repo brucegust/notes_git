@@ -368,6 +368,7 @@ Buckle up!
 <span class="tab_thrice"><a href="#prac_p4" class="contents">d) p4 Merge Tool</a></span>
 <span class="tab_once"><a href="#prac_duplicate" class="contents">O) Duplicate Branch</a></span>
 <span class="tab_once"><a href="#prac_messes" class="contents">P) Merging and Conflicts</a></span>
+<span class="tab_once"><a href="#prac_scrb" class="contents">Q) Cleaning Things Up</a></span>
 
 
 		</div><!--end of table of contents-->
@@ -3184,6 +3185,10 @@ $ git branch final-acitivty-stream-jic</div>
 What you've just done is made a copy of <span class="blue">final-activity-stream</span> and called it <span class="blue">final-activity-stream-jic</span>.
 
 <span class="tab_once"><a name="prac_messes" class="contents">P) Merging and Conflicts</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
+
+Things can get a little dicy.
+
+<span class="tab_once"><a name="prac_scrb" class="contents">Q) Cleaning Things Up</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
 
 https://stackoverflow.com/questions/1251681/git-mergetool-generates-unwanted-orig-files
 
