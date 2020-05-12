@@ -3190,8 +3190,6 @@ Things can get a little dicy.
 
 <span class="tab_once"><a name="prac_scrb" class="contents">Q) Cleaning Things Up</a> <a href="#top" style="font-weight:normal; text-decoration:none; color:#808080;">(back to top...)</a></span>
 
-https://stackoverflow.com/questions/1251681/git-mergetool-generates-unwanted-orig-files
-
 
 		</div><!--closing tag for content-->
 	</div><!--closing tag for wysiwyg-->
