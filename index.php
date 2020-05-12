@@ -3188,6 +3188,8 @@ What you've just done is made a copy of <span class="blue">final-activity-stream
 Merging can be complicated.
 
 https://stackoverflow.com/questions/1251681/git-mergetool-generates-unwanted-orig-files
+	 
+Click <a href="https://apple.stackexchange.com/questions/252541/how-do-i-escape-the-git-commit-window-from-os-x-terminal" target="_blank">here</a> for a list of commands to exit "commit" message portion of the Command Line.
 
 
 		</div><!--closing tag for content-->
